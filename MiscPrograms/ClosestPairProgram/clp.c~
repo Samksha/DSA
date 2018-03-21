@@ -1,0 +1,32 @@
+#include"clp.h"
+
+int compareX(struct Point* a, struct Point* b)
+{
+	return (a->x - b->x);
+}
+
+int compareY(struct Point* a, struct Point* b)
+{
+	return (a->y - b->y);
+}
+
+float dist(struct Point* p1, struct Point* p2)
+{
+	return sqrt( (p1->x - p2->x)*(p1->x - p2->x) + (p1->y - p2->y)*(p1->y - p2->y));
+}
+
+float bruteForce(struct Point* p, int n)
+{
+	float min = FLT_MAX;
+	int i,j;
+	for(i=0; i<n; i++)
+		for(j=i+1; j<n; j++)
+			if(dist(&p[i], &p[j]) < min)
+				min = dist(&p[i], &p[j]);
+	return min;
+}	
+
+float min(float x, float y)
+{
+	return (x<y)?x:y;
+}

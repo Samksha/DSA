@@ -1,0 +1,8 @@
+p2: main.o qsort.o qsort.h
+	gcc main.o qsort.o -o p2Prog
+
+main.o: main.c qsort.h
+	gcc -c main.c
+
+qsort.o: qsort.c qsort.h
+	gcc -c qsort.c
