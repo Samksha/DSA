@@ -1,11 +1,11 @@
 #include"stack.h"
 
-struct Stack createNewS()
+struct Stack* createNewS()
 {
 	struct Stack* s = (struct Stack*)malloc(sizeof(struct Stack));
 	s->top=NULL;
 	s->size=0;
-	return *s;
+	return s;
 }
 
 boolean isEmptyS(struct Stack* s)

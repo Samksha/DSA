@@ -1,0 +1,4 @@
+*~
+*.o
+avl_test
+.gdb_history

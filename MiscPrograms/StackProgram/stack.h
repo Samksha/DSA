@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef long element;
+
 struct Node
 {
-	long data;
+	element data;
 	struct Node* next;
 	struct Node* prev;
 };
@@ -16,7 +18,7 @@ struct Stack
 
 typedef enum {true, false} boolean;
 boolean isEmpty(struct Stack* s);
-struct Stack createNewS();
+struct Stack* createNewS();
 void push(struct Stack* s, long d);
 void pop(struct Stack* s);
 struct Node* peek(struct Stack* s);

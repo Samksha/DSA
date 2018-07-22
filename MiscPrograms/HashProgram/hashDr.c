@@ -22,5 +22,8 @@ int main()
 	int c = collCount(valStrings, baseNumber, tableSize);
 	printf("Collision count = %d\n", c);
 
+	struct HTable* ht = createHashTable(tableSize);
+
+
 	return 0;
 }

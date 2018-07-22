@@ -58,3 +58,54 @@ void printStrings(char** arr)
 	for(int i = 0; arr[i]!=NULL; i++)
 		printf("%s\n", arr[i]);
 }
+
+struct HTable* createHashTable(int tableSize)
+{
+	struct HTable* ht = (struct HTable*)malloc(sizeof(struct HTable));
+	ht->table = (struct LList*)malloc(sizeof(struct LList)*tableSize);
+	ht->elementCount = 0;
+	ht->insertionCost = 0;
+	ht->queryingCost = 0;
+	return ht;
+}
+
+void insert(struct HTable* ht, char** A, int j, int baseNumber, int tableSize)
+{
+	int hash = h1(A[j], baseNumber, tableSize);
+
+	if(ht->table[hash].head->count == 0)
+	{
+		ht->table[hash].head->index = j;
+		ht->table[hash].tail = ht->table[hash].head;
+		ht->table[hash].head->count++;
+		ht->elementCount++;
+	}
+	else
+	{
+//		int flag = 0;
+		struct Node* temp = ht->table[hash].head;
+		while(temp->next != NULL)
+		{
+			if(strcmp(A[temp->index], A[j])==0)
+			{
+				temp->count++;
+				return;
+			} 
+			temp = temp->next;
+		}
+		temp->next = (struct Node*)malloc(sizeof(struct Node));
+		temp->next->next = NULL;
+		temp->next->index = j;
+		temp->next->count = 1;
+		ht->insertionCost++;
+	}
+}
+
+int insertAll(struct HTable* ht, char** A, int baseNumber, int tableSize)
+{
+	for(int i = 0; A[i]!=NULL; i++)
+		insert(ht, A, i, baseNumber, tableSize);
+	return ht->insertionCost;
+}
+
+
